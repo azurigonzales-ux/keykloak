@@ -1,8 +1,8 @@
 /* ========================================================
-   TEMA INSTITUCIONAL SETAB - CLON EXACTO (GUINDA)
+   TEMA INSTITUCIONAL SETAB - CLON EXACTO Y RESPONSIVO
    ======================================================== */
 
-/* 1. ESTRUCTURA PRINCIPAL: Mitad Blanca y Mitad Guinda */
+/* 1. ESTRUCTURA PRINCIPAL */
 body {
     background: #ffffff !important;
     margin: 0 !important;
@@ -13,7 +13,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
 
-/* 2. PANEL DERECHO: Textura y Logo (Con truco mágico para borrar el fondo blanco) */
+/* 2. PANEL DERECHO: Textura y Logo fusionado */
 body::after {
     content: "";
     position: fixed;
@@ -21,17 +21,12 @@ body::after {
     right: 0;
     width: 50%;
     height: 100vh;
-    background-color: #981A35 !important; /* Guinda SETAB */
-    
-    /* Capa 1: El logo | Capa 2: La textura de fondo */
+    background-color: #981A35 !important;
     background-image: url('../img/BANNER_LOGO.png'), url('../img/GOBIERNO_DEL_PUEBLO.png') !important;
     background-position: center center, center center !important;
     background-repeat: no-repeat, repeat !important; 
-    background-size: 50%, cover !important; /* Logo al 50% de la pared, textura cubre todo */
-    
-    /* TRUCO MAESTRO: Multiplica los colores. Esto hace que el fondo blanco cuadrado de tu logo se vuelva transparente y se fusione con el guinda */
+    background-size: 50%, cover !important;
     background-blend-mode: multiply, normal !important; 
-    
     z-index: 0;
 }
 
@@ -45,9 +40,11 @@ body::after {
     align-items: center !important;
     background: #ffffff !important;
     z-index: 10;
+    padding: 2rem !important; /* Da aire alrededor en móviles */
+    box-sizing: border-box !important;
 }
 
-/* 4. FORMULARIO: Sin bordes y centrado */
+/* 4. FORMULARIO: Sin bordes */
 .card-pf, .pf-v5-c-login__main {
     border: none !important;
     box-shadow: none !important;
@@ -58,12 +55,18 @@ body::after {
     padding: 0 !important;
 }
 
-/* 5. OCULTAR LOGO FEO DE KEYCLOAK */
-#kc-header-wrapper, .pf-v5-c-brand {
-    display: none !important;
+/* 5. ARREGLO DEL TÍTULO SIGEBI */
+/* Ocultamos SOLO el icono feo de Keycloak */
+.pf-v5-c-brand {
+    display: none !important; 
+}
+/* Desocultamos esta caja para que tu código HTML de SIGEBI vuelva a brillar */
+#kc-header-wrapper {
+    display: block !important; 
+    width: 100% !important;
 }
 
-/* 6. TÍTULO: "Acceder a tu cuenta" (Color Guinda) */
+/* 6. TÍTULO: "Acceder a tu cuenta" */
 #kc-page-title, .pf-v5-c-title {
     color: #981A35 !important;
     font-weight: 800 !important;
@@ -73,7 +76,7 @@ body::after {
     margin-bottom: 2rem !important;
 }
 
-/* 7. ETIQUETAS: "Usuario o email" y "Contraseña" */
+/* 7. ETIQUETAS */
 label, .pf-v5-c-form__label-text, .control-label {
     color: #666666 !important;
     font-size: 0.85rem !important;
@@ -83,9 +86,9 @@ label, .pf-v5-c-form__label-text, .control-label {
     text-align: left !important;
 }
 
-/* 8. INPUTS: Cajas de texto con fondo gris claro (Igual a tu imagen 2) */
+/* 8. INPUTS */
 input[type="text"], input[type="password"], .pf-v5-c-form-control {
-    background-color: #EEF2F6 !important; /* Gris clarito */
+    background-color: #EEF2F6 !important;
     border: 1px solid #E2E8F0 !important;
     border-radius: 6px !important;
     color: #333333 !important;
@@ -97,8 +100,6 @@ input[type="text"], input[type="password"], .pf-v5-c-form-control {
     transition: all 0.2s ease !important;
     box-shadow: none !important;
 }
-
-/* Borde guinda al escribir en las cajas */
 input[type="text"]:focus, input[type="password"]:focus, .pf-v5-c-form-control:focus, .pf-v5-c-form-control:focus-within {
     border-color: #981A35 !important; 
     outline: none !important;
@@ -106,7 +107,7 @@ input[type="text"]:focus, input[type="password"]:focus, .pf-v5-c-form-control:fo
     box-shadow: 0 0 0 2px rgba(152, 26, 53, 0.2) !important; 
 }
 
-/* 9. BOTÓN: Iniciar sesión (Forzado a Guinda) */
+/* 9. BOTÓN */
 input[type="submit"], button[type="submit"], .pf-v5-c-button.pf-m-primary, .btn-primary {
     background-color: #981A35 !important;
     color: #ffffff !important;
@@ -122,18 +123,25 @@ input[type="submit"], button[type="submit"], .pf-v5-c-button.pf-m-primary, .btn-
     transition: background-color 0.3s ease !important;
 }
 input[type="submit"]:hover, button[type="submit"]:hover, .pf-v5-c-button.pf-m-primary:hover, .btn-primary:hover {
-    background-color: #691C32 !important; /* Guinda oscuro al pasar el mouse */
+    background-color: #691C32 !important;
 }
 
-/* 10. ICONO DE OJITO EN CONTRASEÑA */
-.pf-v5-c-button.pf-m-control {
-    background: transparent !important;
-    border: none !important;
-    color: #666 !important;
-}
-
-/* 11. RESPONSIVO: Celulares */
-@media (max-width: 768px) {
-    body::after { display: none !important; }
-    .login-pf-page, .pf-v5-c-login { width: 100% !important; }
+/* ========================================================
+   10. RESPONSIVO (MÓVILES Y TABLETS)
+   ======================================================== */
+@media (max-width: 900px) {
+    /* Desaparece el panel guinda derecho por falta de espacio */
+    body::after { 
+        display: none !important; 
+    }
+    /* El contenedor blanco ahora ocupa toda la pantalla */
+    .login-pf-page, .pf-v5-c-login { 
+        width: 100% !important; 
+        padding: 2rem 1.5rem !important; /* Espacio a los lados para que no pegue a los bordes */
+    }
+    /* Aseguramos que el formulario se estire bien pero sin salirse */
+    .card-pf, .pf-v5-c-login__main {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
 }
